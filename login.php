@@ -17,13 +17,13 @@
         </ul>
     </nav>
     <div class="login-box">
-        <form id="login_form" method="post">
+        <form id="login_form" method="post" action="loginauth.php">
             <h1>Login</h1>
             <label>Email</label>
-            <input type="email" id="form_email">
+            <input type="email" id="form_email" name="email">
             <span class="error_form" id="email_error_message"></span>
             <label>Password</label>
-            <input type="password" id="form_password" placeholder="" />
+            <input type="password" id="form_password" placeholder=""  name="password">
             <span class="error_form" id="password_error_message"></span>
             <input type="submit" value="Log In">
 

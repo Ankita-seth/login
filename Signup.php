@@ -1,3 +1,4 @@
+<?php include 'connection.php'?> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +43,7 @@
             <label>Confirm Password</label>
             <input type="password" id="form_retype_password" placeholder="">
             <span class="error_form" id="retype_password_error_message"></span>
-            <input type="submit" value="SignUp">
+            <input type="submit" value="submit">
 
         </form>
 

@@ -1,7 +1,5 @@
 <?php
 
-if(isset($_POST['submit']))
-{
     include('connection.php');
 
     $Name=$_POST['Name'];                                                                                                                                                                                                                                                                                                                                                                                                                                          
@@ -10,15 +8,19 @@ if(isset($_POST['submit']))
     $Salary=$_POST['Salary'];
     $Password = $_POST['Password'];
 
-    $sql="INSERT INTO `form_data`(`Name`, `Email`, `Age`, `Salary`, `Password`) VALUES ($Name,$Email,$Age,$Salary,$Password)";
+    $sqlcheck = "SELECT * FROM `users` WHERE `Email`='$Email' AND `Password`= '$Password'";
+    $result = $conn->query($sqlcheck);
 
-if($conn->query($sql)==true)
-{echo "new user added";
-}else{
-     echo "Error: " . $sql . "<br>" . $conn->error;
-}
+    if ($result->num_rows > 0) {
+        header("location: Signup.php");
+    }
+    $sql="INSERT INTO `users`(`Name`, `Email`, `Age`, `Salary`, `Password`) VALUES ('$Name','$Email','$Age','$Salary','$Password')";
 
-$conn->close();
-}
-
+    if ($conn->query($sql) === TRUE) {
+        header("location: SuccessfulLogin.php");
+      } else {
+        echo "Error:lolo " . $sql . "<br>" . $conn->error;
+      }
+      
+      $conn->close();
 ?>
