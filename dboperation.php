@@ -1,5 +1,6 @@
 <?php
 
+
     include('connection.php');
 
     $Name=$_POST['Name'];                                                                                                                                                                                                                                                                                                                                                                                                                                          
@@ -14,13 +15,20 @@
     if ($result->num_rows > 0) {
         header("location: Signup.php");
     }
-    $sql="INSERT INTO `users`(`Name`, `Email`, `Age`, `Salary`, `Password`) VALUES ('$Name','$Email','$Age','$Salary','$Password')";
+
+   else{ $sql="INSERT INTO `users`(`Name`, `Email`, `Age`, `Salary`, `Password`) VALUES ('$Name','$Email','$Age','$Salary','$Password')";
 
     if ($conn->query($sql) === TRUE) {
-        header("location: SuccessfulLogin.php");
-      } else {
-        echo "Error:lolo " . $sql . "<br>" . $conn->error;
-      }
       
+        session_start();
+        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+        $_SESSION['username']=$row['Name'];
+        header("location: SuccessfulLogin.php");
+        
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+    
       $conn->close();
+    }
 ?>

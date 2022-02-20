@@ -14,11 +14,12 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   
-  header("location: SuccessfulLogin.php");
+
   session_start();
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
   $_SESSION['username']=$row['Name'];
+  header("location: SuccessfulLogin.php");
   
 } else {
     header("location: login.php");
